@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css}"/>
+    <script th:src="@{../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
+    <script th:src="@{../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+
+</head>
+<body>
+修改页面
+<div class="container-fluid" >
+    <form id="userFormUpdate" class="form-horizontal"  >
+        <input type="hidden" name="userId" th:value="${userEntity.userId}" >
+        <div class="form-group">
+            <label class="control-label col-sm-2">用户姓名</label>
+            <div class="col-sm-4">
+                <input name="userName" type="text" th:value="${userEntity.userName}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">性别</label>
+            <div class="col-sm-4">
+                <input name="gender" type="text" th:value="${userEntity.gender}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">生日</label>
+            <div class="col-sm-4">
+                <input name="birthday" type="text" th:value="${userEntity.birthday}" class="date form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">爱好</label>
+            <div class="col-sm-4">
+                <select  name="hobbyId" class="form-control">
+                    <option th:each="hobbyEntity:${hobbyEntity}"
+                    th:selected="${userEntity.hobbyId == hobbyEntity.id}"
+                    th:value="${hobbyEntity.id}" th:text="${hobbyEntity.name}">
+                    </option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    
+    $(function () {
+
+    })
+    
+    $(".date").datetimepicker({
+        language: 'zh-CN',//显示中文
+        format: 'yyyy-mm-dd',//显示格式
+        minView: "month",//设置只显示到月份
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+    })
+</script>
+</html>
